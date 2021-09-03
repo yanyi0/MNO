@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MNO'
-  s.version          = '0.1.0'
+  s.version          = '0.0.1'
   s.summary          = 'A short description of MNO.'
 
 # This description is used to generate tags and improve search results.
@@ -17,9 +17,7 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      = '测试pod源码和静态库之间进行切换，不上传.a文件'
 
   s.homepage         = 'https://github.com/yanyi0/MNO'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
@@ -31,6 +29,21 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '9.0'
 
   s.source_files = 'MNO/Classes/**/*'
+
+  if s.version.to_s.include?'Binary'    
+    puts '-------------------------------------------------------------------'
+    puts 'Notice:MNO is binary now'
+    puts '-------------------------------------------------------------------'
+    s.prepare_command = '/bin/bash build_lib.sh'
+    s.source_files = 'Pod/Products/include/**'
+    s.ios.vendored_libraries = 'Pod/Products/lib/*.a'
+    s.public_header_files = 'Pod/Products/include/*.h'    
+  else
+    puts '-------------------------------------------------------------------'
+    puts 'Notice:MNO is source code now'
+    puts '-------------------------------------------------------------------'
+    s.source_files = 'MNO/Classes/**/*'
+  end
   
   # s.resource_bundles = {
   #   'MNO' => ['MNO/Assets/*.png']

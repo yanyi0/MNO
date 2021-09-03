@@ -1,0 +1,27 @@
+{
+  "name": "MNO",
+  "version": "0.0.1.Binary",
+  "summary": "A short description of MNO.",
+  "description": "测试pod源码和静态库之间进行切换，不上传.a文件",
+  "homepage": "https://github.com/yanyi0/MNO",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "yanyi0": "785144130@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/yanyi0/MNO.git",
+    "tag": "0.0.1.Binary"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "Pod/Products/include/**",
+  "prepare_command": "/bin/bash build_lib.sh",
+  "ios": {
+    "vendored_libraries": "Pod/Products/lib/*.a"
+  },
+  "public_header_files": "Pod/Products/include/*.h"
+}
